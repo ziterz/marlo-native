@@ -1,0 +1,61 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".User.Fragment.HomeFragment">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme1">
+
+        <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:titleTextColor="@color/colorAccent">
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            />
+        <com.daimajia.slider.library.Indicators.PagerIndicator
+            android:layout_marginTop="30dp"
+            android:id="@+id/custom_indicator"
+            android:layout_below="@+id/slider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selected_width="8dp"
+            app:selected_height="8dp"
+            app:unselected_height="7dp"
+            app:unselected_width="7dp"
+            app:selected_color="@android:color/holo_blue_dark"
+            app:unselected_color="@color/colorIcon"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+            <Button
+                android:id="@+id/order_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pesan_sekarang"
+
+                android:backgroundTint="@color/colorMarlo"
+                android:textSize="15sp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ziterz.marlo">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- EXTERNAL_STORAGE permissions are optional for Android 6.0 onwards. -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="22" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="22" />
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppBar">
+        <activity
+            android:name="com.ziterz.marlo.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ziterz.marlo.User.UserHomeActivity"
+            android:label="@string/title_beranda"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.ziterz.marlo.User.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name="com.ziterz.marlo.User.UserRegisterActivity"
+            android:label="@string/daftar_akun"
+            android:parentActivityName="com.ziterz.marlo.User.LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ziterz.marlo.User.LoginActivity" />
+        </activity>
+        <activity
+            android:name="com.ziterz.marlo.User.UserSearchActivity"
+            android:label="@string/pilih_laundry"
+            android:parentActivityName="com.ziterz.marlo.User.UserAddressActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ziterz.marlo.User.UserAddressActivity" />
+        </activity>
+        <activity
+            android:name="com.ziterz.marlo.User.UserDetailActivity"
+            android:label="@string/title_activity_detail"
+            android:parentActivityName="com.ziterz.marlo.User.UserSearchActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ziterz.marlo.User.UserSearchActivity" />
+        </activity>
+        <activity
+            android:name="com.ziterz.marlo.User.UserAddressActivity"
+            android:label="Alamat Penjemputan"
+            android:parentActivityName="com.ziterz.marlo.User.UserHomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ziterz.marlo.User.UserHomeActivity" />
+        </activity>
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name="com.ziterz.marlo.User.UserRincianActivity"
+            android:label="Rincian Pesanan"
+            android:parentActivityName="com.ziterz.marlo.User.UserDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ziterz.marlo.User.UserDetailActivity" />
+        </activity>
+        <activity
+            android:name="com.ziterz.marlo.User.NotifActivity"
+            android:label="Notifikasi"
+            android:parentActivityName="com.ziterz.marlo.User.UserHomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ziterz.marlo.User.UserHomeActivity" />
+        </activity>
+        <activity
+            android:name="com.ziterz.marlo.User.Intro.WelcomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.ziterz.marlo.User.SyaratActivity"
+            android:label="Syarat dan Ketentuan"
+            android:parentActivityName="com.ziterz.marlo.User.UserHomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ziterz.marlo.User.UserHomeActivity" />
+        </activity>
+        <activity
+            android:name="com.ziterz.marlo.User.FeedbackActivity"
+            android:label="Masukan"
+            android:parentActivityName="com.ziterz.marlo.User.UserHomeActivity"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ziterz.marlo.User.UserHomeActivity" /></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Network">
+        <CheckBoxPreference
+            android:key="status"
+            android:title="Status"
+            />
+        <EditTextPreference
+            android:key="ipaddress"
+            android:title="Network"
+            android:dialogTitle="Enter Values" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

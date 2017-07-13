@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.ziterz.marlo.User.UserRegisterActivity"
+    android:background="@color/colorBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/user"
+            android:contentDescription="@string/app_name"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+
+        <EditText
+            android:id="@+id/email_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_login"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
+            android:layout_marginTop="30dp"/>
+
+
+        <EditText
+            android:id="@+id/nama_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_login"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:ems="10"
+            android:inputType="textPersonName|textCapWords"
+            android:hint="Nama lengkap"
+            android:layout_marginTop="15dp"/>
+
+        <EditText
+            android:id="@+id/password_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_login"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/password_input"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="15dp"/>
+
+        <EditText
+            android:id="@+id/password_signup2"
+            android:background="@drawable/border_login"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/re_enter_password_input"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="15dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/button_signup"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/daftar"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:background="@drawable/button_style"/>
+
+        </RelativeLayout>
+
+        <!-- edit -->
+    </LinearLayout>
+</ScrollView>

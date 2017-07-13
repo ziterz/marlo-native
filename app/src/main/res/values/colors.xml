@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FAFAFA</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#262626</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorMarlo">#FFD31C</color>
+    <color name="colorMarloClicked">#C6A313</color>
+    <color name="colorIcon">#C7C7C7</color>
+    <color name="colorPressed">#ffe26d</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#727272</color>
+    <color name="dot_dark_screen2">#727272</color>
+    <color name="dot_dark_screen3">#727272</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#000000</color>
+    <color name="dot_light_screen2">#000000</color>
+    <color name="dot_light_screen3">#000000</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+    </array>
+
+    <!--<color name="colorPrimary">#FEF177</color>-->
+    <!--<color name="colorPrimaryDark">#000000</color>-->
+    <!--<color name="colorAccent">#212121</color>-->
+    <!--<color name="white">#FFFFFF</color>-->
+    <!--<color name="colorFloating">#16a085</color>-->
+
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="background">#e5e5e5</color>
+    <color name="half_black">#808080</color>
+    <color name="white">#fafafa</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="pink">#e91e63</color>
+    <color name="pink_pressed">#ec407a</color>
+    <color name="blue_semi_transparent">#805677fc</color>
+    <color name="blue_semi_transparent_pressed">#80738ffe</color>
+</resources>
