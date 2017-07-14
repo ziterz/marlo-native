@@ -18,8 +18,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ziterz.marlo.PrefManager;
 import com.ziterz.marlo.R;
-import com.ziterz.marlo.User.LoginActivity;
+import com.ziterz.marlo.User.UserLoginActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -119,7 +120,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, UserLoginActivity.class));
         finish();
     }
 

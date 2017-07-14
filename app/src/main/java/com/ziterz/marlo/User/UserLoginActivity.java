@@ -22,9 +22,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import com.ziterz.marlo.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class UserLoginActivity extends AppCompatActivity {
 
-    private static final String TAG = LoginActivity.class.getSimpleName();
+    private static final String TAG = UserLoginActivity.class.getSimpleName();
     private FirebaseAuth firebaseAuth;
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
                     Log.d(TAG, "onAuthStateChanged: signed_in " + user.getEmail());
-                    Intent i = new Intent(LoginActivity.this, UserHomeActivity.class);
+                    Intent i = new Intent(UserLoginActivity.this, UserHomeActivity.class);
                     startActivity(i);
                     finish();
                 }else{
@@ -121,12 +121,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(LoginActivity.this,"Berhasil masuk",Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(LoginActivity.this, UserHomeActivity.class);
+                    Toast.makeText(UserLoginActivity.this,"Berhasil masuk",Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(UserLoginActivity.this, UserHomeActivity.class);
                     startActivity(i);
                 }else{
-                    Toast.makeText(LoginActivity.this,"Gagal masuk",Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(LoginActivity.this, UserRegisterActivity.class);
+                    Toast.makeText(UserLoginActivity.this,"Gagal masuk",Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(UserLoginActivity.this, UserRegisterActivity.class);
                     startActivity(i);
                 }
                 progressDialog.dismiss();

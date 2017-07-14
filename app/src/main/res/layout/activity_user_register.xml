@@ -39,17 +39,17 @@
             android:layout_marginTop="30dp"/>
 
 
-        <EditText
-            android:id="@+id/nama_signup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_login"
-            android:padding="15dp"
-            android:textSize="15sp"
-            android:ems="10"
-            android:inputType="textPersonName|textCapWords"
-            android:hint="Nama lengkap"
-            android:layout_marginTop="15dp"/>
+        <!--<EditText-->
+            <!--android:id="@+id/nama_signup"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/border_login"-->
+            <!--android:padding="15dp"-->
+            <!--android:textSize="15sp"-->
+            <!--android:ems="10"-->
+            <!--android:inputType="textPersonName|textCapWords"-->
+            <!--android:hint="Nama lengkap"-->
+            <!--android:layout_marginTop="15dp"/>-->
 
         <EditText
             android:id="@+id/password_signup"

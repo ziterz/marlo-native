@@ -44,15 +44,15 @@
             android:label="@string/title_beranda"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.ziterz.marlo.User.LoginActivity"
+            android:name="com.ziterz.marlo.User.UserLoginActivity"
             android:label="@string/title_activity_login" />
         <activity
             android:name="com.ziterz.marlo.User.UserRegisterActivity"
             android:label="@string/daftar_akun"
-            android:parentActivityName="com.ziterz.marlo.User.LoginActivity">
+            android:parentActivityName="com.ziterz.marlo.User.UserLoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ziterz.marlo.User.LoginActivity" />
+                android:value="com.ziterz.marlo.User.UserLoginActivity" />
         </activity>
         <activity
             android:name="com.ziterz.marlo.User.UserSearchActivity"

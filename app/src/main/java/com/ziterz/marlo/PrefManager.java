@@ -1,4 +1,4 @@
-package com.ziterz.marlo.User.Intro;
+package com.ziterz.marlo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,9 +16,11 @@ public class PrefManager {
     int PRIVATE_MODE = 0;
 
     // Shared preferences file name
-    private static final String PREF_NAME = "androidhive-welcome";
+    private static final String PREF_NAME = "marlo";
 
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
+    private static final String NAMA_LENGKAP = "nama_lengkap";
+    private static final String NO_HP = "no_hp";
 
     public PrefManager(Context context) {
         this._context = context;
@@ -35,4 +37,21 @@ public class PrefManager {
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
 
+    public void setNamaLengkap(String name) {
+        editor.putString(NAMA_LENGKAP, name);
+        editor.commit();
+    }
+
+    public String getNamaLengkap() {
+        return pref.getString(NAMA_LENGKAP, "-");
+    }
+
+    public void setNoHp(String hp) {
+        editor.putString(NO_HP, hp);
+        editor.commit();
+    }
+
+    public String getNoHp() {
+        return pref.getString(NO_HP, "-");
+    }
 }
