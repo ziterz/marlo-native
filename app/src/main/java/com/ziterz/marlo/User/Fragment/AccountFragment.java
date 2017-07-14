@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import com.ziterz.marlo.User.FeedbackActivity;
 import com.ziterz.marlo.User.SyaratActivity;
-import com.ziterz.marlo.User.LoginActivity;
+import com.ziterz.marlo.User.UserLoginActivity;
 import com.ziterz.marlo.R;
 
 /**
@@ -64,7 +64,7 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(getActivity(),"Berhasil keluar",Toast.LENGTH_LONG).show();
-                Intent i = new Intent(getActivity(), LoginActivity.class);
+                Intent i = new Intent(getActivity(), UserLoginActivity.class);
                 startActivity(i);
             }
         });
