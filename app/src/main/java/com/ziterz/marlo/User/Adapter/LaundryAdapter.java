@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import com.ziterz.marlo.R;
@@ -35,7 +37,6 @@ public class LaundryAdapter extends RecyclerView.Adapter<LaundryAdapter.MyViewHo
             super (view);
             title = (TextView) view.findViewById(R.id.title_card);
             alamat = (TextView) view.findViewById(R.id.alamat);
-            rating = (TextView) view.findViewById(R.id.text_rating);
             jarak = (TextView) view.findViewById(R.id.jarak);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             Typeface medium = Typeface.createFromAsset(mContext.getAssets(), "fonts/Roboto-Medium.ttf");
@@ -69,8 +70,9 @@ public class LaundryAdapter extends RecyclerView.Adapter<LaundryAdapter.MyViewHo
         Laundry laundryData = laundryDataList.get(position);
         holder.title.setText(laundryData.getNamaLaundry());
         holder.alamat.setText(laundryData.getAlamat());
-        holder.rating.setText("4.6");
-        holder.jarak.setText("32m");
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+        holder.jarak.setText(df.format(laundryData.getJarak())+" km");
         Glide.with(mContext).load("http://marloapp.com"+laundryData.getDirectoryFoto()).into(holder.thumbnail);
     }
 

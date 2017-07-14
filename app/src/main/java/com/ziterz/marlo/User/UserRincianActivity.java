@@ -10,12 +10,14 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ziterz.marlo.PrefManager;
 import com.ziterz.marlo.R;
 
 public class UserRincianActivity extends AppCompatActivity {
 
+    PrefManager prefManager;
     RelativeLayout selesai;
-    TextView title_nama,title_hari,title_tanggal,title_jam,title_alamat,title_detail,title_pesanan,total_harga,button_next_rincian;
+    TextView nama,hari,tanggal,jam,alamat,detail,title_nama,title_hari,title_tanggal,title_jam,title_alamat,title_detail,title_pesanan,total_harga,button_next_rincian;
     Button payment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,12 @@ public class UserRincianActivity extends AppCompatActivity {
         selesai = (RelativeLayout) findViewById(R.id.selesai);
         payment = (Button) findViewById(R.id.payment);
         button_next_rincian = (TextView) findViewById(R.id.button_next_rincian);
+        nama = (TextView) findViewById(R.id.nama);
+        hari = (TextView) findViewById(R.id.hari);
+        tanggal = (TextView) findViewById(R.id.tanggal);
+        jam = (TextView) findViewById(R.id.jam);
+        alamat = (TextView) findViewById(R.id.alamat);
+        detail = (TextView) findViewById(R.id.detail);
         title_nama = (TextView) findViewById(R.id.title_nama);
         title_hari = (TextView) findViewById(R.id.title_hari);
         title_tanggal = (TextView) findViewById(R.id.title_tanggal);
@@ -43,6 +51,12 @@ public class UserRincianActivity extends AppCompatActivity {
         title_detail.setTypeface(medium);
         title_pesanan.setTypeface(medium);
         total_harga.setTypeface(medium);
+        prefManager = new PrefManager(this);
+        nama.setText(prefManager.getNamaLengkap());
+        tanggal.setText(prefManager.getDateOrder());
+        jam.setText(prefManager.getTimeOrder()+ "WIB");
+        alamat.setText(prefManager.getPrimaryAddress());
+        detail.setText(prefManager.getDetailAddress());
         selesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

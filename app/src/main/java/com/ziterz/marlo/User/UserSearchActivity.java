@@ -12,9 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.ziterz.marlo.PrefManager;
 import com.ziterz.marlo.User.API.ApiInterface;
 import com.ziterz.marlo.User.API.LaundryAPI;
 import com.ziterz.marlo.User.Item.LaundryData;
@@ -34,7 +37,10 @@ public class UserSearchActivity extends AppCompatActivity {
     private List<Laundry> laundryDataList;
     private LaundryAdapter adapter;
     FloatingActionButton floating;
+    String address,detail,date,time;
+    double longitude,latitude;
 
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,18 @@ public class UserSearchActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Log.d(TAG, "onCreate");
         recyclerView = (RecyclerView) findViewById(R.id.searchRecycle);
+        address = getIntent().getStringExtra("address");
+        detail = getIntent().getStringExtra("detail");
+        longitude = getIntent().getDoubleExtra("longitude",0);
+        latitude = getIntent().getDoubleExtra("latitude",0);
+        date = getIntent().getStringExtra("date");
+        time = getIntent().getStringExtra("time");
+
+        prefManager = new PrefManager(this);
+        prefManager.setPrimaryAddress(address);
+        prefManager.setDetailAddress(detail);
+        prefManager.setDateOrder(date);
+        prefManager.setTimeOrder(time);
 
         laundryDataList = new ArrayList<>();
         adapter = new LaundryAdapter(this, laundryDataList);
@@ -66,6 +84,11 @@ public class UserSearchActivity extends AppCompatActivity {
                 }
 
                 List<Laundry> laundryData = response.body().getLaundries();
+                for (Laundry laundry:laundryData) {
+                    double jarak = CalculationByDistance(longitude,latitude,Double.parseDouble(laundry.getLong()),Double.parseDouble(laundry.getLat()));
+                    laundry.setJarak(jarak);
+                }
+
                 getJarak(laundryData);
                 laundryDataList.addAll(laundryData);
                 adapter.notifyDataSetChanged();
@@ -78,6 +101,31 @@ public class UserSearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public double CalculationByDistance(double longitudeA, double latitudeA, double longitudeB, double latitudeB) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = latitudeA;
+        double lat2 = latitudeB;
+        double lon1 = latitudeA;
+        double lon2 = latitudeB;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        int meterInDec = Integer.valueOf(newFormat.format(meter));
+        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+                + " Meter   " + meterInDec);
+
+        return Radius * c;
     }
 
     private void getJarak(List<Laundry> laundryData) {

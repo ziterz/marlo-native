@@ -12,6 +12,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class Laundry implements Parcelable{
 
+    private double jarak;
+
+    public double getJarak() {
+        return jarak;
+    }
+
+    public void setJarak(double jarak) {
+        this.jarak = jarak;
+    }
+
     @SerializedName("id_laundry")
     @Expose
     private Integer idLaundry;
@@ -188,6 +198,7 @@ public class Laundry implements Parcelable{
         dest.writeString(this.directoryFoto);
         dest.writeString(this.nohp);
         dest.writeValue(this.biayaAntarJemput);
+        dest.writeDouble(this.jarak);
     }
 
     public Laundry() {
@@ -208,6 +219,7 @@ public class Laundry implements Parcelable{
         this.directoryFoto = in.readString();
         this.nohp = in.readString();
         this.biayaAntarJemput = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.jarak = in.readDouble();
     }
 
     public static final Creator<Laundry> CREATOR = new Creator<Laundry>() {

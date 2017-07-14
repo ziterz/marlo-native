@@ -24,37 +24,37 @@
 
     <include layout="@layout/content_search" />
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/multiple_actions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        fab:fab_addButtonColorNormal="@color/colorMarlo"
-        fab:fab_addButtonColorPressed="@color/colorMarloClicked"
-        fab:fab_addButtonPlusIconColor="@color/colorAccent"
-        fab:fab_labelStyle="@style/menu_labels_style"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp">
+    <!--<com.getbase.floatingactionbutton.FloatingActionsMenu-->
+        <!--android:id="@+id/multiple_actions"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--fab:fab_addButtonColorNormal="@color/colorMarlo"-->
+        <!--fab:fab_addButtonColorPressed="@color/colorMarloClicked"-->
+        <!--fab:fab_addButtonPlusIconColor="@color/colorAccent"-->
+        <!--fab:fab_labelStyle="@style/menu_labels_style"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:layout_marginEnd="16dp">-->
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/colorMarlo"
-            fab:fab_icon="@drawable/ic_rating"
-            fab:fab_size="mini"
-            fab:fab_colorPressed="@color/colorMarloClicked"/>
+        <!--<com.getbase.floatingactionbutton.FloatingActionButton-->
+            <!--android:id="@+id/rating"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--fab:fab_colorNormal="@color/colorMarlo"-->
+            <!--fab:fab_icon="@drawable/ic_rating"-->
+            <!--fab:fab_size="mini"-->
+            <!--fab:fab_colorPressed="@color/colorMarloClicked"/>-->
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/jarak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/colorMarlo"
-            fab:fab_icon="@drawable/ic_jarak"
-            fab:fab_size="mini"
-            fab:fab_colorPressed="@color/colorMarloClicked"/>
+        <!--<com.getbase.floatingactionbutton.FloatingActionButton-->
+            <!--android:id="@+id/jarak"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--fab:fab_colorNormal="@color/colorMarlo"-->
+            <!--fab:fab_icon="@drawable/ic_jarak"-->
+            <!--fab:fab_size="mini"-->
+            <!--fab:fab_colorPressed="@color/colorMarloClicked"/>-->
 
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    <!--</com.getbase.floatingactionbutton.FloatingActionsMenu>-->
 
 </android.support.design.widget.CoordinatorLayout>

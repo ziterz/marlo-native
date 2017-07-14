@@ -22,6 +22,11 @@ public class PrefManager {
     private static final String NAMA_LENGKAP = "nama_lengkap";
     private static final String NO_HP = "no_hp";
 
+    private static final String PRIMARY_ADDRESS = "address";
+    private static final String DETAIL_ADDRESS = "detail";
+    private static final String DATE_ORDER = "date";
+    private static final String TIME_ORDER = "time";
+
     public PrefManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
@@ -54,4 +59,28 @@ public class PrefManager {
     public String getNoHp() {
         return pref.getString(NO_HP, "-");
     }
+
+    public void setPrimaryAddress(String primaryAddress) {
+        editor.putString(PRIMARY_ADDRESS, primaryAddress);
+        editor.commit();
+    }
+    public String getPrimaryAddress() { return pref.getString(PRIMARY_ADDRESS, "-");}
+
+    public void setDetailAddress(String primaryAddress) {
+        editor.putString(DETAIL_ADDRESS, primaryAddress);
+        editor.commit();
+    }
+    public String getDetailAddress() { return pref.getString(DETAIL_ADDRESS, "-");}
+
+    public void setDateOrder(String primaryAddress) {
+        editor.putString(DATE_ORDER, primaryAddress);
+        editor.commit();
+    }
+    public String getDateOrder() { return pref.getString(DATE_ORDER, "-");}
+
+    public void setTimeOrder(String primaryAddress) {
+        editor.putString(TIME_ORDER, primaryAddress);
+        editor.commit();
+    }
+    public String getTimeOrder() { return pref.getString(TIME_ORDER, "-");}
 }

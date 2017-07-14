@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -32,7 +33,6 @@ public class UserDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Laundry laundry = getIntent().getParcelableExtra("laundry");
-        text_rating = (TextView) findViewById(R.id.text_rating);
         min1 = (Button) findViewById(R.id.button_min_1);
         plus1 = (Button) findViewById(R.id.button_plus_1);
         value1 = (TextView) findViewById(R.id.text_value_1);
@@ -48,11 +48,11 @@ public class UserDetailActivity extends AppCompatActivity {
         title_profil = (TextView) findViewById(R.id.title_profil);
         Typeface medium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         total.setTypeface(medium);
+        total.setText("0");
         total_title.setTypeface(medium);
         pesan_sekarang.setTypeface(medium);
         title_profil.setTypeface(medium);
         getSupportActionBar().setTitle(laundry.getNamaLaundry());
-        text_rating.setText("4.6");
         order_detail = (RelativeLayout) findViewById(R.id.order_detail_button);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -62,8 +62,12 @@ public class UserDetailActivity extends AppCompatActivity {
         order_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), UserRincianActivity.class);
-                startActivity(intent);
+                if(total.toString().equals("0")){
+                    Toast.makeText(getBaseContext(),"Pilih layanan",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(getBaseContext(), UserRincianActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

@@ -1,19 +1,25 @@
 package com.ziterz.marlo.User;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,6 +28,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseUser;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
@@ -32,7 +43,11 @@ import java.util.Locale;
 import com.ziterz.marlo.R;
 import com.ziterz.marlo.User.Fragment.HistoryFragment;
 
+import static android.R.attr.button;
+
 public class UserAddressActivity extends AppCompatActivity implements OnMapReadyCallback,DatePickerDialog.OnDateSetListener,TimePickerDialog.OnTimeSetListener   {
+
+    double latitude,longitude;
 
     TextView text_address,detail_address,text_date,text_time,pesan_laundry;
     RelativeLayout detail_order_btn;
@@ -65,8 +80,39 @@ public class UserAddressActivity extends AppCompatActivity implements OnMapReady
         detail_order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(),UserSearchActivity.class);
-                startActivity(intent);
+                Log.d("UserAddresActivity", "onClick:" + text_address.getText().toString() + "." + text_address.getText().toString().isEmpty());
+
+                if(text_address.getText().toString().isEmpty()){
+                    Toast.makeText(getBaseContext(),"Masukan alamat",Toast.LENGTH_SHORT).show();
+                    text_address.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(text_address,InputMethodManager.SHOW_IMPLICIT);
+                } else if(detail_address.getText().toString().isEmpty()){
+                    Toast.makeText(getBaseContext(),"Masukan detail alamat",Toast.LENGTH_SHORT).show();
+                    detail_address.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(detail_address,InputMethodManager.SHOW_IMPLICIT);
+                } else if(text_date.getText().toString().isEmpty()){
+                    Toast.makeText(getBaseContext(),"Masukan tanggal penjemputan",Toast.LENGTH_SHORT).show();
+                    text_date.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(text_date,InputMethodManager.SHOW_IMPLICIT);
+                } else if(text_time.getText().toString().isEmpty()){
+                    Toast.makeText(getBaseContext(),"Masukan jam penjemputan",Toast.LENGTH_SHORT).show();
+                    text_time.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(text_time,InputMethodManager.SHOW_IMPLICIT);
+                }else {
+                    Intent intent = new Intent(getBaseContext(),UserSearchActivity.class);
+                    intent.putExtra("address",text_address.getText().toString());
+                    intent.putExtra("detail",detail_address.getText().toString());
+                    intent.putExtra("longitude",longitude);
+                    intent.putExtra("latitude",latitude);
+                    intent.putExtra("date",text_date.getText().toString());
+                    intent.putExtra("time",text_time.getText().toString());
+                    startActivity(intent);
+                }
+
             }
         });
         Calendar now = Calendar.getInstance();
@@ -104,6 +150,7 @@ public class UserAddressActivity extends AppCompatActivity implements OnMapReady
                 tpd.show(getFragmentManager(), "Timepickerdialog");
             }
         });
+
     }
 
 
@@ -136,8 +183,8 @@ public class UserAddressActivity extends AppCompatActivity implements OnMapReady
         mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
             public void onCameraChange(CameraPosition arg0) {
                 LatLng latvalue = arg0.target;
-                double latitude = latvalue.latitude;
-                double longitude = latvalue.longitude;
+                latitude = latvalue.latitude;
+                longitude = latvalue.longitude;
 
                 try {
                     Geocoder geo = new Geocoder(getBaseContext().getApplicationContext(), Locale.getDefault());
