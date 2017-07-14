@@ -1,16 +1,19 @@
 package com.ziterz.marlo.User.Fragment;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,8 +25,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.ziterz.marlo.PrefManager;
 import com.ziterz.marlo.User.FeedbackActivity;
 import com.ziterz.marlo.User.SyaratActivity;
@@ -37,8 +46,8 @@ public class AccountFragment extends Fragment {
     private PrefManager prefManager;
     private FirebaseAuth firebaseAuth;
     RelativeLayout detail_logout,feedback,syarat;
-    TextView title_profil, textViewName,title_icon_email, textViewHp,title_icon_password,title_terms,title_syarat,title_feedback,logout;
-    EditText editTextName, editTextHp;
+    TextView title_profil, textViewName, textViewEmail, textViewHp, textViewPassword,title_terms,title_syarat,title_feedback,logout;
+    EditText editTextName, editTextHp, editTextPassword;
     public AccountFragment() {
         // Required empty public constructor
     }
@@ -58,20 +67,26 @@ public class AccountFragment extends Fragment {
 
         title_profil = (TextView) view.findViewById(R.id.title_profil);
         textViewName = (TextView) view.findViewById(R.id.tv_name);
-        title_icon_email = (TextView) view.findViewById(R.id.title_icon_email);
+        textViewEmail = (TextView) view.findViewById(R.id.tv_email);
         textViewHp = (TextView) view.findViewById(R.id.tv_hp);
-        title_icon_password = (TextView) view.findViewById(R.id.title_icon_password);
+        textViewPassword = (TextView) view.findViewById(R.id.tv_password);
         title_terms = (TextView) view.findViewById(R.id.title_terms);
         editTextHp = (EditText) view.findViewById(R.id.edit_hp);
         editTextName = (EditText) view.findViewById(R.id.edit_name);
+        editTextPassword = (EditText) view.findViewById(R.id.edit_password);
 
         Typeface medium = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Medium.ttf");
         title_profil.setTypeface(medium);
         title_terms.setTypeface(medium);
 
-        // Ambil data dari PrefManager
+        // Set Data
         textViewName.setText(prefManager.getNamaLengkap());
         textViewHp.setText(prefManager.getNoHp());
+        try {
+            textViewEmail.setText(firebaseAuth.getCurrentUser().getEmail());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         textViewName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +114,14 @@ public class AccountFragment extends Fragment {
 
                 editTextHp.setText(hp);
                 editTextHp.setVisibility(View.VISIBLE);
+            }
+        });
+
+        textViewPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textViewPassword.setVisibility(View.GONE);
+                editTextPassword.setVisibility(View.VISIBLE);
             }
         });
 
@@ -133,6 +156,63 @@ public class AccountFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 prefManager.setNoHp(s.toString());
+            }
+        });
+
+        editTextPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(final Editable s) {
+                final EditText txtPass = new EditText(getContext());
+
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Password lama")
+                        .setMessage("Masukkan password lama untuk mengganti baru!")
+                        .setView(txtPass)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                String pass = txtPass.getText().toString();
+                                final FirebaseUser user = firebaseAuth.getCurrentUser();
+                                AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), pass);
+
+                                user.reauthenticate(credential)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    user.updatePassword(s.toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                Toast.makeText(getContext(), "Password berhasil diubah", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                Toast.makeText(getContext(), "Password gagal diubah", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    Toast.makeText(getContext(), "Password gagal diubah", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                        })
+                        .show();
+
+
             }
         });
 

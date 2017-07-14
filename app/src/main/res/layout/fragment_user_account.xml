@@ -144,7 +144,7 @@
                         app:srcCompat="@drawable/ic_account_email" />
 
                     <TextView
-                        android:id="@+id/title_icon_email"
+                        android:id="@+id/tv_email"
                         style="@style/MarloTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -227,9 +227,9 @@
                         app:srcCompat="@drawable/ic_account_lock" />
 
                     <TextView
-                        android:id="@+id/title_icon_password"
+                        android:id="@+id/tv_password"
                         style="@style/MarloTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/icon_password"
@@ -239,6 +239,20 @@
                         android:text="password"
                         android:textColor="@color/colorAccent"
                         android:textSize="15dp" />
+
+                    <EditText
+                        android:inputType="textPassword"
+                        android:visibility="gone"
+                        android:id="@+id/edit_password"
+                        style="@style/MarloTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/icon_password"
+                        android:layout_centerVertical="true"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="15dp"/>
                 </RelativeLayout>
 
                 <RelativeLayout
