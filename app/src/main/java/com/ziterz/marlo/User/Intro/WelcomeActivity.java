@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ziterz.marlo.PrefManager;
 import com.ziterz.marlo.R;
 import com.ziterz.marlo.User.UserLoginActivity;
 

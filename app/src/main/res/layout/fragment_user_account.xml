@@ -96,9 +96,9 @@
                         app:srcCompat="@drawable/ic_account_name" />
 
                     <TextView
-                        android:id="@+id/title_icon_name"
+                        android:id="@+id/tv_name"
                         style="@style/MarloTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/icon_name"
@@ -107,6 +107,20 @@
                         android:text="Ziady Mubaraq"
                         android:textColor="@color/colorAccent"
                         android:textSize="15dp" />
+
+                    <EditText
+                        android:visibility="gone"
+                        android:id="@+id/edit_name"
+                        style="@style/MarloTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/icon_name"
+                        android:layout_centerVertical="true"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="15dp"
+                        />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -164,9 +178,9 @@
                         app:srcCompat="@drawable/ic_account_smartphone" />
 
                     <TextView
-                        android:id="@+id/title_icon_hp"
+                        android:id="@+id/tv_hp"
                         style="@style/MarloTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/icon_hp"
@@ -175,6 +189,21 @@
                         android:text="087829733521"
                         android:textColor="@color/colorAccent"
                         android:textSize="15dp" />
+
+                    <EditText
+                        android:inputType="number"
+                        android:visibility="gone"
+                        android:id="@+id/edit_hp"
+                        style="@style/MarloTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/icon_hp"
+                        android:layout_centerVertical="true"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="15dp"/>
+
                 </RelativeLayout>
 
                 <RelativeLayout
