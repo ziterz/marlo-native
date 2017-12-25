@@ -16,6 +16,7 @@ import com.ziterz.marlo.User.Fragment.HistoryFragment;
 import com.ziterz.marlo.User.Fragment.HomeFragment;
 
 public class UserHomeActivity extends AppCompatActivity {
+
     private static final String TAG = UserHomeActivity.class.getSimpleName();
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
