@@ -48,7 +48,7 @@ public class UserSearchActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Log.d(TAG, "onCreate");
+        Log.d(TAG, "onCreate ");
         recyclerView = (RecyclerView) findViewById(R.id.searchRecycle);
         address = getIntent().getStringExtra("address");
         detail = getIntent().getStringExtra("detail");
